@@ -6,6 +6,8 @@ using namespace std;
 class LRUCache {
 private:
     int capacity;
+    int hits = 0;
+    int misses = 0;
     list<int> usage;
     unordered_map<int, pair<int, list<int>::iterator>> cache;
 
@@ -16,8 +18,11 @@ public:
 
     int get(int key) {
         if (cache.find(key) == cache.end()) {
+            misses++;
             return -1;
         }
+
+        hits++;
 
         usage.erase(cache[key].second);
         usage.push_front(key);
@@ -45,5 +50,10 @@ public:
         }
 
         cout << endl;
+    }
+
+    void printStats() {
+        cout << "Hits: " << hits << endl;
+        cout << "Misses: " << misses << endl;
     }
 };
