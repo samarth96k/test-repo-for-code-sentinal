@@ -20,6 +20,9 @@ class SalesAnalytics:
         revenue = 0
         for row in self.rows:
             revenue += row["amount"] * row["quantity"]
+        if revenue < 0:
+            raise ValueError("Revenue cannot be negative")
+
         return revenue
 
     def revenue_by_category(self):

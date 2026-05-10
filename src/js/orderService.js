@@ -25,6 +25,8 @@ class OrderService {
       createdAt: new Date().toISOString()
     };
 
+    this.logger.info("Creating order for user: " + userId);
+
     const savedOrder = await this.database.orders.insert(order);
 
     const payment = await this.paymentGateway.createPayment({
