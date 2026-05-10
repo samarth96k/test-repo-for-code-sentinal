@@ -46,3 +46,20 @@ class SalesAnalytics:
             "product": best_product,
             "quantity": best_count
         }
+
+    def monthly_revenue_report(self):
+        monthly = defaultdict(float)
+
+        for row in self.rows:
+            month_key = row["date"].strftime("%Y-%m")
+            monthly[month_key] += row["amount"] * row["quantity"]
+
+        report = []
+
+        for month, revenue in monthly.items():
+            report.append({
+                "month": month,
+                "revenue": revenue
+            })
+
+        return sorted(report, key=lambda item: item["month"])
