@@ -10,9 +10,21 @@ class OrderService {
       throw new Error("User id is required");
     }
 
+    if (!items || items.length === 0) {
+      throw new Error("Order must contain at least one item");
+    }
+
     let total = 0;
 
     for (let item of items) {
+      if (item.quantity <= 0) {
+        throw new Error("Invalid quantity");
+      }
+
+      if (item.price < 0) {
+        throw new Error("Invalid price");
+      }
+
       total += item.price * item.quantity;
     }
 
