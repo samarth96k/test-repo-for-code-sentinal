@@ -71,10 +71,9 @@ public class UserManager {
         for (User user : users) {
             if (user.getId() == id) {
                 users.remove(user);
-                return true;
             }
         }
 
-        return false;
+        return true;
     }
 }
