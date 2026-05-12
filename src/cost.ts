@@ -1,0 +1,1 @@
+//will be used later to determine and console log costs of all the models
